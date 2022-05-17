@@ -46,10 +46,12 @@ class Menu {
                         1 -> {
                             val xBurger: Produtos = Lanches()
                             xBurger.redirecionar(subMenuLanches)
+                            xBurger.mostrarProdutos()
                         }
                         2 -> {
                             val xSalada: Produtos = Lanches()
                             xSalada.redirecionar(subMenuLanches)
+                            xSalada.mostrarProdutos()
                         }
                         else -> {
                             println(MSG_OPCAO_INVALIDA)
@@ -63,10 +65,12 @@ class Menu {
                         1 -> {
                             val refrigerante: Produtos = Bebidas()
                             refrigerante.redirecionar(subMenuBebidas)
+                            refrigerante.mostrarProdutos()
                         }
                         2 -> {
                             val suco: Produtos = Bebidas()
                             suco.redirecionar(subMenuBebidas)
+                            suco.mostrarProdutos()
                         }
                         else -> {
                             println(MSG_OPCAO_INVALIDA)
@@ -74,7 +78,7 @@ class Menu {
                         }
                     }
                 }
-                3 -> carrinhoCompras.mostrarProdutos()
+                3 -> ""
                 4 -> carrinhoCompras.removerProdutos()
                 5 -> {
                     println("Obrigado por usar nosso sistema!")

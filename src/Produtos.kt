@@ -4,9 +4,20 @@ open class Produtos {
     protected open var nome: String = ""
     open var qntd: Int = 0
     open var valor: Double = 0.0
-    val dicionario = mutableMapOf<Int, Produtos>()
+    val dicionario = mutableMapOf<Int, ArrayList<Produtos>>()
     open var contador: Int = 0
-//    protected val listaLanches = ArrayList<Produtos>()
+    val listaProdutos: ArrayList<Produtos> = ArrayList()
+
+    fun guardarProduto(listaProdutos: ArrayList<Produtos>): Int {
+        contador += 1
+        dicionario[contador] = listaProdutos
+        return contador
+    }
+
+    fun receberProdutos(produtos: Produtos) {
+        listaProdutos.add(produtos)
+        guardarProduto(listaProdutos)
+    }
 
     open fun redirecionar(subMenu: Int) {}
 
@@ -27,7 +38,10 @@ open class Produtos {
     fun mostrarProdutos() {
         println("Verificar itens salvos no Carrinho")
         dicionario.forEach { (chave, valor) ->
-            println("$chave - ${valor.qntd} ${valor.nome} - ${valor.qntd*valor.valor}")
+            println("Código do produto: $chave")
+            valor.forEach {
+                println("${it.nome} - Valor total: R$${it.qntd * it.valor}")
+            }
         }
     }
 
