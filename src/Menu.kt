@@ -78,7 +78,7 @@ class Menu {
                         }
                     }
                 }
-                3 -> ""
+                3 -> carrinhoCompras.mostrarProdutos()
                 4 -> carrinhoCompras.removerProdutos()
                 5 -> {
                     println("Obrigado por usar nosso sistema!")
@@ -102,5 +102,4 @@ class Menu {
             validarOpcoesSubMenu()
         }
     }
-
 }

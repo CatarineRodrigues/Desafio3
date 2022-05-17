@@ -19,22 +19,6 @@ open class Produtos {
         guardarProduto(listaProdutos)
     }
 
-    open fun redirecionar(subMenu: Int) {}
-
-    fun validarOpcao(): Int {
-        return try {
-            var opcaoSelecionada = readln().toInt()
-            while (opcaoSelecionada <= 0) {
-                println(MSG_OPCAO_INVALIDA)
-                opcaoSelecionada = readln().toInt()
-            }
-            opcaoSelecionada
-        } catch (exception: NumberFormatException) {
-            println(MSG_ERRO)
-            validarOpcao()
-        }
-    }
-
     fun mostrarProdutos() {
         println("Verificar itens salvos no Carrinho")
         dicionario.forEach { (chave, valor) ->
@@ -68,4 +52,19 @@ open class Produtos {
         }
     }
 
+    open fun redirecionar(subMenu: Int) {}
+
+    fun validarOpcao(): Int {
+        return try {
+            var opcaoSelecionada = readln().toInt()
+            while (opcaoSelecionada <= 0) {
+                println(MSG_OPCAO_INVALIDA)
+                opcaoSelecionada = readln().toInt()
+            }
+            opcaoSelecionada
+        } catch (exception: NumberFormatException) {
+            println(MSG_ERRO)
+            validarOpcao()
+        }
+    }
 }
