@@ -1,21 +1,27 @@
+package menu
+
+import carrinho.Carrinho
+import MSG_ERRO
+import MSG_OPCAO_INVALIDA
 import kotlin.system.exitProcess
 
 class Menu {
     private var opcaoMenuPrincipal: Int = 0
     private var subMenuLanches: Int = 0
     private var subMenuBebidas: Int = 0
-    private val carrinhoCompras = Produtos()
+    private val carrinhoCompras = Carrinho()
 
     private fun menuPrincipal() {
         println("-----------------------------------------")
         println("----------- MENU PRINCIPAL --------------")
         println("---- 1 Comprar Lanche -------------------")
         println("---- 2 Comprar Bebida -------------------")
-        println("---- 3 Verificar Carrinho de Compras ----")
-        println("---- 4 Remover produtos do Carrinho -----")
-        println("---- 5 Sair -----------------------------")
+        println("---- 3 Verificar carrinho.Carrinho de Compras ----")
+        println("---- 4 Remover produtos do carrinho.Carrinho -----")
+        println("---- 5 Finalizar Compra -----------------")
+        println("---- 6 Sair -----------------------------")
         println("-----------------------------------------")
-        opcaoMenuPrincipal = Produtos().validarOpcao()
+        opcaoMenuPrincipal = carrinhoCompras.validarNumeroDigitado()
     }
 
     private fun subMenuLanches() {
@@ -44,14 +50,12 @@ class Menu {
                     subMenuLanches()
                     when (subMenuLanches) {
                         1 -> {
-                            val xBurger: Produtos = Lanches()
-                            xBurger.redirecionar(subMenuLanches)
-                            xBurger.mostrarProdutos()
+                            carrinhoCompras.redirecionarLanche(subMenuLanches)
+                            carrinhoCompras.mostrarProdutos()
                         }
                         2 -> {
-                            val xSalada: Produtos = Lanches()
-                            xSalada.redirecionar(subMenuLanches)
-                            xSalada.mostrarProdutos()
+                            carrinhoCompras.redirecionarLanche(subMenuLanches)
+                            carrinhoCompras.mostrarProdutos()
                         }
                         else -> {
                             println(MSG_OPCAO_INVALIDA)
@@ -63,14 +67,12 @@ class Menu {
                     subMenuBebidas()
                     when (subMenuBebidas) {
                         1 -> {
-                            val refrigerante: Produtos = Bebidas()
-                            refrigerante.redirecionar(subMenuBebidas)
-                            refrigerante.mostrarProdutos()
+                            carrinhoCompras.redirecionarBebida(subMenuBebidas)
+                            carrinhoCompras.mostrarProdutos()
                         }
                         2 -> {
-                            val suco: Produtos = Bebidas()
-                            suco.redirecionar(subMenuBebidas)
-                            suco.mostrarProdutos()
+                            carrinhoCompras.redirecionarBebida(subMenuBebidas)
+                            carrinhoCompras.mostrarProdutos()
                         }
                         else -> {
                             println(MSG_OPCAO_INVALIDA)
@@ -80,7 +82,8 @@ class Menu {
                 }
                 3 -> carrinhoCompras.mostrarProdutos()
                 4 -> carrinhoCompras.removerProdutos()
-                5 -> {
+                5 -> carrinhoCompras.finalizarPedido()
+                6 -> {
                     println("Obrigado por usar nosso sistema!")
                     exitProcess(0)
                 }
